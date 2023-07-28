@@ -4,7 +4,7 @@ This repository is forked from the repository containing the code for QNS-Lite,
 a simulator for quantum networks. QNS-Lite was originally developed by Ali
 Farahbakhsh and Chen Feng and used for the simulations of the paper
 ["Opportunistic routing in quantum
-networks"][https://ieeexplore.ieee.org/abstract/document/9796816], Ali
+networks"](https://ieeexplore.ieee.org/abstract/document/9796816), Ali
 Farahbakhsh and Chen Feng. In IEEE INFOCOM 2022-IEEE Conference on Computer
 Communications, pp. 490-499, 2022.
 
