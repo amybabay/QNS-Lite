@@ -23,7 +23,7 @@ try:
         splitted = splitted.split(", ")
         cntr = 0
         for num in splitted:
-            intSplitted[i-1][cntr] = int(num)
+            intSplitted[i-1][cntr] = int(float(num))
             cntr = cntr + 1
     print(data)
     print(data[1])

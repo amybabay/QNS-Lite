@@ -11,15 +11,15 @@ import (
 
 func main() {
 	itrSingleReq := 100
-	itrReqs := 30
+	itrReqs := 50
 	maxItr := 10000
 	bm := new(benchmark.Benchmarker)
-	//experiment1(bm, itrReqs, itrSingleReq, maxItr)
+	experiment1(bm, itrReqs, itrSingleReq, maxItr)
 	//experiment2(bm, itrReqs, itrSingleReq, maxItr)
 	//experiment3(bm, itrReqs, itrSingleReq, maxItr)
 	//experiment4(bm, itrReqs, itrSingleReq, maxItr)
 	//experiment5(bm, itrReqs, itrSingleReq, maxItr)
-	experiment6(bm, itrReqs, itrSingleReq, maxItr)
+	//experiment6(bm, itrReqs, itrSingleReq, maxItr)
 }
 
 func AverageWaiting(nums []float64, maxItr int) float64 {
@@ -86,21 +86,29 @@ func handleFile(data [][]float64, filePath string) {
 		}
 		defer file.Close()
 	}
+
+	// AB: open file
 	file, err := os.OpenFile(filePath, os.O_WRONLY, 0644)
 	if err != nil {
 		log.Println(err)
 	}
 	defer file.Close()
+
+	// AB: set up string array
 	data_String := make([][]string, len(data))
 	for i := 0; i <= len(data)-1; i++ {
 		data_String[i] = make([]string, len(data[0]))
 	}
+
+	// AB: convert float data from "data" arg to strings and write to file
 	for i := 0; i < len(data); i++ {
 		if _, err := file.WriteString("\n["); err != nil {
 			log.Fatal(err)
 		}
 		for j := 0; j < len(data[0]); j++ {
-			data_String[i][j] = strconv.Itoa(int(data[i][j]))
+			//AB: why was everything getting cast to int?? Note that plotting scripts still do this
+			//AB: replace with float version below: data_String[i][j] = strconv.Itoa(int(data[i][j]))
+			data_String[i][j] = strconv.FormatFloat(data[i][j], 'f', 3, 64)
 			if j == len(data[0])-1 {
 				if _, err := file.WriteString(data_String[i][j]); err != nil {
 					log.Fatal(err)
